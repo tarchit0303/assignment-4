@@ -1,0 +1,8 @@
+household<-read.table(file="C:/Users/acer/Documents/data analysis coursera/assignment coursera 4/household_power_consumption.txt",header=TRUE,sep=";",colClasses = "character",na.strings = "?")
+february<-subset(household,Date %in% c("1/2/2007","2/2/2007"))
+february$Date<-as.Date(february$Date,format="%d/%m/%Y")
+datetime<-paste(february$Date,february$Time)
+february$datetime<-as.POSIXct(datetime)
+plot(Global_active_power~datetime,data = february,type="l",xlab="",ylab = "Global Active Power(kilowatts)")
+dev.copy(png,"plot2.png",width=480,height=480)
+dev.off()
